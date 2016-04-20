@@ -34,6 +34,8 @@ cat_picture.addEventListener("click", function(){
   alert("meow!");
 });
 
+// 3. Once triggered, manipulate the element
+
 button.addEventListener("click", function(){
   var width=cat_picture.clientWidth;
   var height=cat_picture.clientHeight;
@@ -48,7 +50,59 @@ exercise.addEventListener("click", function(){
   cat_picture.style.height=(height)+'px';
 });
 
-// 3. Once triggered, manipulate the element
-function feed() {
-  // get a property 
+// Containers
+// Array
+var my_array = [1, 2, 3];
+my_array.push(4);
+console.log(my_array);
+console.log(my_array[1]);
+my_array.pop();
+console.log(my_array);
+
+// Object
+var my_object = {'first_number': 33, "second_number": 55};
+console.log(my_object);
+console.log(my_object.first_number);
+
+my_object.third_number = 77;
+console.log(my_object);
+
+// Nesting
+var cat1 = {
+  name: "fluffy",
+  age: 8,
+  weight: 5
+};
+
+var cat2 = {
+  name: "Catty McCatface",
+  age: 1,
+  weight: 4
+};
+
+console.log(cat1, cat2);
+
+var my_cats = [cat1, cat2];
+
+console.log(my_cats);
+
+// Exercise: make an array of your own
+
+var dad = {
+  name: "Robert",
+  age: 37
 }
+
+var mum = {
+  name: "Clarissa",
+  age: 31
+}
+
+var son = {
+  name: "Quentin",
+  age: 0
+}
+
+var my_family = [dad, mum, son];
+
+console.log(my_family);
