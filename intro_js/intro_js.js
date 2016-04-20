@@ -1,4 +1,4 @@
-console.log("Hello, world!");
+/*console.log("Hello, world!");
 
 // this is a comment
 
@@ -22,3 +22,33 @@ function multiply( arg1, arg2 ) {
 }
 
 multiply(5, 10);
+*/
+
+// 1. get element into js
+var cat_picture = document.getElementById("cat");
+var button = document.getElementById("button");
+var exercise = document.getElementById("exercise");
+
+// 2. Add event listener
+cat_picture.addEventListener("click", function(){
+  alert("meow!");
+});
+
+button.addEventListener("click", function(){
+  var width=cat_picture.clientWidth;
+  var height=cat_picture.clientHeight;
+  cat_picture.style.width=(width+30)+'px';
+  cat_picture.style.height=(height)+'px';
+});
+
+exercise.addEventListener("click", function(){
+  var width=cat_picture.clientWidth;
+  var height=cat_picture.clientHeight;
+  cat_picture.style.width=(width-30)+'px';
+  cat_picture.style.height=(height)+'px';
+});
+
+// 3. Once triggered, manipulate the element
+function feed() {
+  // get a property 
+}
