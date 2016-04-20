@@ -1,0 +1,23 @@
+.title {
+  color: red;
+  font-size: 50px;
+  text-align: center
+}
+.description {
+  color: darkgrey;
+  font-size: 16pt;
+  border-color: black;
+  border-left-style: solid;
+  padding: 2px;
+  width: 10%;
+  min-width: 400px;
+  background-color: grey;
+}
+img {
+  width:200px;
+}
+
+.head {
+}
+.eye {
+}
