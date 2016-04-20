@@ -106,3 +106,47 @@ var son = {
 var my_family = [dad, mum, son];
 
 console.log(my_family);
+my_family.push({ name: "future child", age: -1 });
+
+console.log(my_family[3]);
+
+my_family[0].health=0.5;
+
+// Namespaces
+
+var old_array = [1,2,3];
+var new_array = old_array;
+
+console.log(old_array);
+console.log(new_array);
+
+var new_array = old_array.map(function(array_element){
+  return array_element;
+});
+
+new_array[1]=55;
+
+console.log(old_array);
+console.log(new_array);
+
+// Exercise: Use map to make a new array that is all the old elements + 10
+
+var plus_ten = old_array.map(function(element){
+  return element+10;
+});
+console.log(plus_ten);
+
+
+// Get names
+
+var my_family_names = my_family.map(function(person){
+  return person.name;
+});
+console.log(my_family_names);
+
+// Filter
+
+var young_family_members = my_family.filter(function(person){
+  return person.age < 10;
+});
+console.log(young_family_members);
