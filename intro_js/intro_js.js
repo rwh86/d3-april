@@ -30,6 +30,10 @@ var button = document.getElementById("button");
 var exercise = document.getElementById("exercise");
 var grow = document.getElementById("grow");
 var shrink = document.getElementById("shrink");
+var print_big = document.getElementById("print_big");
+
+var height_history = [];
+height_history.push(cat_picture.clientHeight);
 
 // 2. Add event listener
 cat_picture.addEventListener("click", function(){
@@ -57,6 +61,8 @@ grow.addEventListener("click", function(){
   var height=cat_picture.clientHeight;
   cat_picture.style.height=(height+30)+'px';
   cat_picture.style.width=(width)+'px';
+  height_history.push(cat_picture.clientHeight);
+  console.log(height_history);
 });
 
 shrink.addEventListener("click", function(){
@@ -64,6 +70,15 @@ shrink.addEventListener("click", function(){
   var height=cat_picture.clientHeight;
   cat_picture.style.height=(height-30)+'px';
   cat_picture.style.width=(width)+'px';
+  height_history.push(cat_picture.clientHeight);
+  console.log(height_history);
+});
+
+print_big.addEventListener("click", function(){
+  var largeSizes = height_history.filter(function(e) {
+    return e > 500;
+  });
+  console.log(largeSizes);
 });
 
 // Containers
