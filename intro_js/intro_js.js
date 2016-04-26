@@ -28,6 +28,8 @@ multiply(5, 10);
 var cat_picture = document.getElementById("cat");
 var button = document.getElementById("button");
 var exercise = document.getElementById("exercise");
+var grow = document.getElementById("grow");
+var shrink = document.getElementById("shrink");
 
 // 2. Add event listener
 cat_picture.addEventListener("click", function(){
@@ -48,6 +50,20 @@ exercise.addEventListener("click", function(){
   var height=cat_picture.clientHeight;
   cat_picture.style.width=(width-30)+'px';
   cat_picture.style.height=(height)+'px';
+});
+
+grow.addEventListener("click", function(){
+  var width=cat_picture.clientWidth;
+  var height=cat_picture.clientHeight;
+  cat_picture.style.height=(height+30)+'px';
+  cat_picture.style.width=(width)+'px';
+});
+
+shrink.addEventListener("click", function(){
+  var width=cat_picture.clientWidth;
+  var height=cat_picture.clientHeight;
+  cat_picture.style.height=(height-30)+'px';
+  cat_picture.style.width=(width)+'px';
 });
 
 // Containers
