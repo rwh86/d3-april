@@ -3,6 +3,8 @@ var dataUrl = "https://raw.githubusercontent.com/IsaKiko/D3-visualising-data/gh-
 d3.json(dataUrl, function(nations) {
   //console.log(nations);
 
+  var filtered_nations = [];
+
   var chart_area = d3.select("#chart_area");
   //console.log(chart_area);
   var frame = chart_area.append("svg");
@@ -45,6 +47,10 @@ d3.json(dataUrl, function(nations) {
   popScale.domain([0,5e8]);
   popScale.range([0,40]);
 
+  var regionScale = d3.scale.category20();
+  regionScale.domain(["Sub-Saharan Africa", "South Asia", "Middle East & North Africa", "America", "Europe & Central Asia", "East Asia & Pacific"]);
+  //regionScale.range([0,40]);
+
   //circ.attr("cy",xScale(nations[0].income[0]));
   //circ.attr("cx",yScale(nations[0].lifeExpectancy[0]));
   //circ.attr("cy",50);
@@ -65,17 +71,43 @@ d3.json(dataUrl, function(nations) {
     .attr("class", "y axis")
     .call(yAxis_generator);
 
+  // checkboxes
+  d3.selectAll(".region_cb").on("change", function() {
+    var type = this.value;
+    //console.log(type);
+    if(this.checked) {
+      var new_nations = nations.filter(function(element) {
+        return element.region == type;
+      });
+
+      filtered_nations = filtered_nations.concat(new_nations);
+      //console.log(filtered_nations);
+    }
+    else {
+      filtered_nations = filtered_nations.filter(function(element) {
+        return element.region != type;
+      });
+    }
+    //console.log(filtered_nations);
+    update_graph();
+  });
+
   // d3 magical data binding
   var data_canvas = canvas.append("g").attr("class", "data_canvas");
 
-  var magic_data_bound_object = data_canvas.selectAll(".dot")
-    .data(nations, function(element){return element.name;});
-  
-  magic_data_bound_object.enter()
-    .append("circle")
-    .attr("class", "dot")
-    .attr("cx", function(d) {return xScale(d.income[0]);})
-    .attr("cy", function(d) {return yScale(d.lifeExpectancy[0]);})
-    .attr("r", function(d) {return popScale(d.population[0]);})
-    .attr("id", function(d) {return d.name;})
+  function update_graph() {
+    var magic_data_bound_object = data_canvas.selectAll(".dot")
+      .data(filtered_nations, function(element){return element.name;});
+    
+    magic_data_bound_object.enter()
+      .append("circle")
+      .attr("class", "dot")
+      .attr("cx", function(d) {return xScale(d.income[0]);})
+      .attr("cy", function(d) {return yScale(d.lifeExpectancy[0]);})
+      .attr("r", function(d) {return popScale(d.population[0]);})
+      .attr("id", function(d) {return d.name;})
+      .attr("fill", function(d) {return regionScale(d.region)});
+
+    magic_data_bound_object.exit().remove();
+  }
 });
